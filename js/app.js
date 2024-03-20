@@ -189,22 +189,43 @@ const bikeArray = [
 // verificare quale bicicletta ha il peso minore e stamparla in console 
 findLightestBike(bikeArray) 
 
+
+// ? NO DESTRUCTURING
+// function findLightestBike(bikeArray) {
+//     // impostare la prima come più leggera
+//     let lightestBike = bikeArray[0]
+
+//     // se un`altra bici è più leggera cambiare lightestBike
+//     for (let i = 0; i < bikeArray.length; i++) {
+//         const currentBike = bikeArray[i]
+//         const currentWeight = currentBike.weight
+//         // console.log(currentBike);
+//         // console.log(currentWeight);
+
+//         if (currentWeight < lightestBike.weight) {
+//             lightestBike = currentBike
+//         }
+        
+//     }
+
+//     console.log(lightestBike);
+// }
+
+// ? DESTRUCTURING 
 function findLightestBike(bikeArray) {
-    // impostare la prima come più leggera
+    // impostare la prima bici come lightestBike
     let lightestBike = bikeArray[0]
 
-    // se un`altra bici è più leggera cambiare lightestBike
     for (let i = 0; i < bikeArray.length; i++) {
-        const currentBike = bikeArray[i]
-        const currentWeight = currentBike.weight
-        // console.log(currentBike);
-        // console.log(currentWeight);
+        // destructuring the bike object 
+        const {name, weight} = bikeArray[i]
 
-        if (currentWeight < lightestBike.weight) {
-            lightestBike = currentBike
+        // se trovo una bici più leggera la sostituisco a quella attiva
+        if (weight < lightestBike.weight) {
+            lightestBike = bikeArray[i]
         }
         
     }
 
-    console.log(lightestBike);
+    console.log(lightestBike)
 }
