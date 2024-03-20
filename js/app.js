@@ -153,79 +153,154 @@ console.log(' ciao');
 // }
 
 // * SNACK 3
-// Creare un array di oggetti:
-// Ogni oggetto descriverà una bici da corsa con le seguenti proprietà: nome e peso.
-// Stampare in console la bici con peso minore utilizzando destructuring e template literal
+// // Creare un array di oggetti:
+// // Ogni oggetto descriverà una bici da corsa con le seguenti proprietà: nome e peso.
+// // Stampare in console la bici con peso minore utilizzando destructuring e template literal
 
-const bikeArray = [
-    {
-        name: 'Bicicletta1',
-        weight: 3
-    },
-    {
-        name: 'Bicicletta2',
-        weight: 2
-    },
-    {
-        name: 'Bicicletta3',
-        weight: 5
-    },
-    {
-        name: 'Bicicletta4',
-        weight: 1
-    },
-    {
-        name: 'Bicicletta5',
-        weight: 10
-    },
-    {
-        name: 'Bicicletta6',
-        weight: 7
-    },
-]
+// const bikeArray = [
+//     {
+//         name: 'Bicicletta1',
+//         weight: 3
+//     },
+//     {
+//         name: 'Bicicletta2',
+//         weight: 2
+//     },
+//     {
+//         name: 'Bicicletta3',
+//         weight: 5
+//     },
+//     {
+//         name: 'Bicicletta4',
+//         weight: 1
+//     },
+//     {
+//         name: 'Bicicletta5',
+//         weight: 10
+//     },
+//     {
+//         name: 'Bicicletta6',
+//         weight: 7
+//     },
+// ]
 
-// console.log(bikeArray)
+// // console.log(bikeArray)
 
-// verificare quale bicicletta ha il peso minore e stamparla in console 
-findLightestBike(bikeArray) 
+// // verificare quale bicicletta ha il peso minore e stamparla in console 
+// findLightestBike(bikeArray) 
 
 
-// ? NO DESTRUCTURING
+// // ? NO DESTRUCTURING
+// // function findLightestBike(bikeArray) {
+// //     // impostare la prima come più leggera
+// //     let lightestBike = bikeArray[0]
+
+// //     // se un`altra bici è più leggera cambiare lightestBike
+// //     for (let i = 0; i < bikeArray.length; i++) {
+// //         const currentBike = bikeArray[i]
+// //         const currentWeight = currentBike.weight
+// //         // console.log(currentBike);
+// //         // console.log(currentWeight);
+
+// //         if (currentWeight < lightestBike.weight) {
+// //             lightestBike = currentBike
+// //         }
+        
+// //     }
+
+// //     console.log(lightestBike);
+// // }
+
+// // ? DESTRUCTURING 
 // function findLightestBike(bikeArray) {
-//     // impostare la prima come più leggera
+//     // impostare la prima bici come lightestBike
 //     let lightestBike = bikeArray[0]
 
-//     // se un`altra bici è più leggera cambiare lightestBike
 //     for (let i = 0; i < bikeArray.length; i++) {
-//         const currentBike = bikeArray[i]
-//         const currentWeight = currentBike.weight
-//         // console.log(currentBike);
-//         // console.log(currentWeight);
+//         // destructuring the bike object 
+//         const {name, weight} = bikeArray[i]
 
-//         if (currentWeight < lightestBike.weight) {
-//             lightestBike = currentBike
+//         // se trovo una bici più leggera la sostituisco a quella attiva
+//         if (weight < lightestBike.weight) {
+//             lightestBike = bikeArray[i]
 //         }
         
 //     }
 
-//     console.log(lightestBike);
+//     console.log(lightestBike)
 // }
 
-// ? DESTRUCTURING 
-function findLightestBike(bikeArray) {
-    // impostare la prima bici come lightestBike
-    let lightestBike = bikeArray[0]
 
-    for (let i = 0; i < bikeArray.length; i++) {
-        // destructuring the bike object 
-        const {name, weight} = bikeArray[i]
+// * SNACK 4
+// Creare un array di oggetti di squadre di calcio.
+// Ogni squadra avrà diverse proprietà: nome, punti fatti, falli subiti.
+// Nome sarà l’unica proprietà da compilare, le altre saranno tutte settate a 0.
+// Generare numeri random al posto degli 0 nelle proprietà: punti fatti e falli subiti.
+// Infine usando la destrutturazione creiamo un nuovo array i cui elementi contengono solo nomi e falli subiti e stampiamo tutto in console.
 
-        // se trovo una bici più leggera la sostituisco a quella attiva
-        if (weight < lightestBike.weight) {
-            lightestBike = bikeArray[i]
+const teams = [
+    {
+        name: 'Milan',
+        points: 0,
+        fouls: 0
+    },
+    {
+        name: 'Inter',
+        points: 0,
+        fouls: 0
+    },
+    {
+        name: 'Roma',
+        points: 0,
+        fouls: 0
+    },
+    {
+        name: 'Napoli',
+        points: 0,
+        fouls: 0
+    }
+]
+
+
+// assegnare i numeri casuali alle proprietà a 0 di ogni squadra
+for (let i = 0; i < teams.length; i++) {
+    const team = teams[i];
+    
+    team.fouls = generateRandomNumber()
+    team.points = generateRandomNumber()
+    
+}
+
+console.log(teams)
+
+
+// generare numeri casuali
+function generateRandomNumber() {
+    const random = Math.floor(Math.random() * 100) + 1
+
+    // console.log(random)
+    return random
+}
+
+function generateNameFoulsArray() {
+    let newArray = []
+
+    for (let i = 0; i < teams.length; i++) {
+        const team = teams[i];
+
+        // destructuring
+        const {name, fouls} = team
+        
+        const newObject = {
+            name,
+            fouls
         }
+
+        newArray.push(newObject)
         
     }
 
-    console.log(lightestBike)
+    console.log(newArray);
 }
+
+generateNameFoulsArray()
